@@ -10,6 +10,7 @@ double dr_chislo_diap(double niz, double verx)
 	b = (a / RAND_MAX) * (verx-niz)+niz;
 	return b;
 }
+
 int dr_chast(double aa)
 {
 	int m1 = 0, a1 = 0;
@@ -17,7 +18,7 @@ int dr_chast(double aa)
 	a = aa;
 	a1 = (int)a;
 	a = a - a1;
-	a = a * 1000000;
+	a = a * 100;
 	m1 = (int)a;
 	return m1;
 }
@@ -32,8 +33,6 @@ int main()
 	double summa = 0.0;
 	double ch = 0.0;
 	double* mas;
-	double* mas2;
-	
 
 	printf("Количество чисел, N =");
 	scanf_s("%d", &N);
@@ -55,33 +54,32 @@ int main()
 	}
 	
 	mas = (double*)malloc(N * sizeof(double));
-	mas2 = (double*)malloc(N * sizeof(double));
-	for (i = 0; i < N; i++)
+		for (i = 0; i < N; i++)
 	{
 		double a = dr_chislo_diap(niz, verx);
 		mas[i] = a;
-		mas2[i] = a;
-	}
+		printf("mas[%d] = %lf\n", i, mas[i]);
+		}
 
 	for (j = 0; j < N; j++)
 	{
 		ch = mas[j];
-		dr_ch_c = dr_chast(ch);
-		if (dr_ch_c < N) 
+				dr_ch_c = dr_chast(ch);
+			if (dr_ch_c < N) 
 		{
 			summa -= mas[dr_ch_c];
-			mas2[dr_ch_c] = 0.0;
-		}
+			mas[dr_ch_c] = 0.0;
+			
+	}
 	}
 	for (k = 0; k < N; k++)
-	{
-		if (mas2[k] != 0.0)
-			summa += mas2[k];
+	{	
+		if (mas[k] != 0.0)
+			summa += mas[k];
+		
 	}
 	printf("\n\n\nСумма = %lf\n\n\n", summa);
-
 	free(mas);
-	free(mas2);
 	return 0;
 }
 
