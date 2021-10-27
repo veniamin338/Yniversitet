@@ -18,7 +18,7 @@ int dr_chast(double aa)
 	a = aa;
 	a1 = (int)a;
 	a = a - a1;
-	a = a * 100;
+	a = a * 1000000;
 	m1 = (int)a;
 	return m1;
 }
